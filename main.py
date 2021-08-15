@@ -137,10 +137,17 @@ def handle_right_key():
     print_timetable()
 
 
+def handle_space_key():
+    global today
+    today = dt.datetime.now()
+    print_timetable()
+
+
 if __name__ == '__main__':
     print_timetable()
 
     keyboard.add_hotkey('left', handle_left_key)
     keyboard.add_hotkey('right', handle_right_key)
+    keyboard.add_hotkey('space', handle_space_key)
 
     keyboard.wait()
