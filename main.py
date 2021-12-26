@@ -2,6 +2,9 @@ import os
 import xlrd
 import datetime as dt
 import keyboard
+import ctypes
+
+ctypes.windll.kernel32.SetConsoleTitleW("Thời khóa biểu - by PVC - KTPM K17A")
 
 # How to đặt tên biến :(
 
@@ -12,7 +15,7 @@ WEEKDAY_DICT = {
     'Thứ 5': 3,
     'Thứ 6': 4,
     'Thứ 7': 5,
-    'Chủ nhật': 6,
+    'Chủ n': 6,
 }
 
 
@@ -144,6 +147,8 @@ def handle_space_key():
 
 
 if __name__ == '__main__':
+
+
     print_timetable()
 
     keyboard.add_hotkey('left', handle_left_key)
