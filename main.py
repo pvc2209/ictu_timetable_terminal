@@ -98,14 +98,18 @@ class Timetable:
     def check(self, time_data: dict, current_date: dt) -> list:
         subject_date = time_data['date']
 
-        start_date = self.get_date_from_string(subject_date[0: 10])
-        end_date = self.get_date_from_string(subject_date[15: 25])
+        start_date = self.get_date_from_string(subject_date[0: 10]).date()
+        end_date = self.get_date_from_string(subject_date[15: 25]).date()
 
         result = []
         for time in time_data['time']:
             subject_weekday = WEEKDAY_DICT[time[:5]]
 
-            if start_date <= current_date <= end_date and subject_weekday == current_date.weekday():
+            # cần convert current_date, start_date, end_date về kiêu date (date không bao gồm thời gian)
+            # ví dụ current_date là 23-01-2022:13:21:22
+            # mà end_date là 23-01-2022:00:00:00 thì điều kiện if bên dưới sẽ false
+            # => convert hết về date
+            if start_date <= current_date.date() <= end_date and subject_weekday == current_date.weekday():
                 result.append(time)
 
         return result
